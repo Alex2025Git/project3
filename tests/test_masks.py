@@ -1,4 +1,6 @@
 # Импортируем модуль masks из src
+import pytest
+
 from src import masks, widget, processing
 
 if __name__ == "__main__":
@@ -67,3 +69,13 @@ if __name__ == "__main__":
         )
     )
 
+def test_get_mask_account(test_mask):
+    assert masks.get_mask_account('1') == test_mask
+
+error_message = 'Указан некорректный номер карты, повторите попытку'
+@pytest.mark.parametrize('value, expected',[('',error_message),
+                                            ('1234567891234567', '1234 56 ** ** ** 4567'),
+                                            ('12323455',error_message)])
+
+def test_get_mask_card_number(value, expected):
+    assert masks.get_mask_card_number(value) == expected
