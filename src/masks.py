@@ -4,7 +4,11 @@ def get_mask_card_number(number_card: str) -> str:
     Возвращает новую строку, в соответсвии с маской номера карты XXXX XX** **** XXXX
     """
     # Проверяем данные на корректность
-    if type(number_card) == str and len(number_card) == 16 and number_card.isdigit():
+    if (
+        isinstance(number_card, str)
+        and len(number_card) == 16
+        and number_card.isdigit()
+    ):
         begin_number_card: str = " ".join([number_card[:4], number_card[4:6]])
         new_number_card: str = " ** ** ** ".join([begin_number_card, number_card[-4:]])
         # функция возвращает номер карты ввиде: XXXX XX** **** XXXX
@@ -22,7 +26,7 @@ def get_mask_account(number_account: str) -> str:
     """
     # Проверяем данные на корректность
     if (
-        type(number_account) == str
+        isinstance(number_account, str)
         and len(number_account) == 20
         and number_account.isdigit()
     ):

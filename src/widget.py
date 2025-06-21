@@ -7,7 +7,7 @@ def mask_account_card(bank_details: str) -> str:
     Возвращает новую строку, в соответсвии с маской номера карты XXXX XX** **** XXXX
     или номера счета **XXXX
     """
-    if type(bank_details) == str and len(bank_details) > 0:
+    if isinstance(bank_details, str) and len(bank_details) > 0:
         list_details: list = bank_details.split()
         account_card: str = list_details[-1]
         if len(account_card) == 16 and account_card.isdigit():
