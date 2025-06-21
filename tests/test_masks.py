@@ -1,81 +1,26 @@
-# Импортируем модуль masks из src
 import pytest
 
-from src import masks, widget, processing
+from src import masks
 
-if __name__ == "__main__":
-    # вызываем функцию для проверки получения маски номера карты
-    print(masks.get_mask_card_number("1234567891234567"))
-    # вызываем функцию для проверки получения маски счета карты
-    print(masks.get_mask_account("12345678912345678912"))
-    # вызываем функцию для проверки получения маски счета и карты
-    print(widget.mask_account_card("Visa Platinum 7000792289606361"))
-    # вызываем функцию для проверки получения маски счета и карты
-    print(widget.mask_account_card("Счет 73654108430135874305"))
-    # вызываем функцию для проверки даты из строки формат "ДД.ММ.ГГГГ"
-    print(widget.get_date("2024-03-11T02:26:18.671407"))
-    # вызываем функцию для проверки возврата список операций по ключу
-    print(
-        processing.filter_by_state(
-            [
-                {
-                    "id": 41428829,
-                    "state": "EXECUTED",
-                    "date": "2019-07-03T18:35:29.512364",
-                },
-                {
-                    "id": 939719570,
-                    "state": "EXECUTED",
-                    "date": "2018-06-30T02:08:58.425572",
-                },
-                {
-                    "id": 594226727,
-                    "state": "CANCELED",
-                    "date": "2018-09-12T21:27:25.241689",
-                },
-                {
-                    "id": 615064591,
-                    "state": "CANCELED",
-                    "date": "2018-10-14T08:21:33.419441",
-                },
-            ]
-        )
-    )
-    # вызываем функцию для проверки возврата отсортированного по дате списка операций
-    print(
-        processing.sort_by_date(
-            [
-                {
-                    "id": 41428829,
-                    "state": "EXECUTED",
-                    "date": "2019-07-03T18:35:29.512364",
-                },
-                {
-                    "id": 939719570,
-                    "state": "EXECUTED",
-                    "date": "2018-06-30T02:08:58.425572",
-                },
-                {
-                    "id": 594226727,
-                    "state": "CANCELED",
-                    "date": "2018-09-12T21:27:25.241689",
-                },
-                {
-                    "id": 615064591,
-                    "state": "CANCELED",
-                    "date": "2018-10-14T08:21:33.419441",
-                },
-            ]
-        )
-    )
+error_get_mask_account = 'Указан некорректный номер счета, повторите попытку'
+error_get_mask_card_number = 'Указан некорректный номер карты, повторите попытку'
 
-def test_get_mask_account(test_mask):
-    assert masks.get_mask_account('1') == test_mask
-
-error_message = 'Указан некорректный номер карты, повторите попытку'
-@pytest.mark.parametrize('value, expected',[('',error_message),
+# вызываем тест-функцию для проверки получения маски номера карты
+@pytest.mark.parametrize('value, expected',[('',error_get_mask_card_number),
                                             ('1234567891234567', '1234 56 ** ** ** 4567'),
-                                            ('12323455',error_message)])
+                                            ('12323455',error_get_mask_card_number),
+                                            (0,error_get_mask_card_number),
+                                            ('12345678*-1234567',error_get_mask_card_number)])
 
 def test_get_mask_card_number(value, expected):
     assert masks.get_mask_card_number(value) == expected
+
+ # вызываем тест-функцию для проверки получения маски счета
+@pytest.mark.parametrize('value, expected',[('',error_get_mask_account),
+                                            ('12345678912345678912', '**8912'),
+                                            ('12323455',error_get_mask_account),
+                                            (10,error_get_mask_account),
+                                            ('12345678*-1234567',error_get_mask_account)])
+
+def test_get_mask_account(value, expected):
+    assert masks.get_mask_account(value) == expected

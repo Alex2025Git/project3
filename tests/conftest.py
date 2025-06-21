@@ -1,12 +1,23 @@
 import pytest, src.masks as masks
 
-error_message = 'Указан некорректный номер карты, повторите попытку'
-@pytest.mark.parametrize('value, expected',[('',error_message),
-                                            ('1234567891234567', '1234 56 ** ** ** 4567'),
-                                            ('12323455',error_message)])
-
 
 @pytest.fixture
-def test_mask():
-    return 'Указан некорректный номер счета, повторите попытку'
+def list_executed():
+    return [{'date': '2019-07-03T18:35:29.512364', 'id': 41428829, 'state': 'EXECUTED'},
+ {'date': '2018-06-30T02:08:58.425572', 'id': 939719570, 'state': 'EXECUTED'}]
+
+@pytest.fixture
+def list_canceled():
+    expected = [{'id': 594226727, 'state': 'CANCELED', 'date': '2018-09-12T21:27:25.241689'},
+             {'id': 615064591, 'state': 'CANCELED', 'date': '2018-10-14T08:21:33.419441'}]
+    state = 'CANCELED'
+    return {'expected': expected,'state': state}
+
+@pytest.fixture
+def list_sort_is_reverse_true():
+    return   [{'date': '2019-07-03T18:35:29.512364', 'id': 41428829, 'state': 'EXECUTED'},
+        {'date': '2018-10-14T08:21:33.419441', 'id': 615064591, 'state': 'CANCELED'},
+        {'date': '2018-09-12T21:27:25.241689', 'id': 594226727, 'state': 'CANCELED'},
+        {'date': '2018-06-30T02:08:58.425572', 'id': 939719570, 'state': 'EXECUTED'}]
+
 
