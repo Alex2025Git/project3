@@ -26,25 +26,25 @@ def transaction_descriptions(transactions: list[dict]) -> Generator[dict, Any, N
 
 
 def card_number_generator(
-    number_begin: str, number_end: str
+    start: str, stop: str
 ) -> Generator[str, Any, None]:
     """
     Функция - генератор, которая принимает на вход диапозон от '0000000000000000' до '9999999999999999'
     Возвращает номер карты соотвествующий маске: XXXX XXXX XXXX XXXX
     """
     if (
-        isinstance(number_begin, str)
-        and number_begin.isdigit()
-        and 0 < int(number_begin) <= 9999999999999999
-        and isinstance(number_end, str)
-        and number_end.isdigit()
-        and 0 < int(number_end) <= 9999999999999999
-        and int(number_end) >= int(number_begin)
-        and len(number_begin) == 16
-        and len(number_end) == 16
+        isinstance(start, str)
+        and start.isdigit()
+        and 0 < int(start) <= 9999999999999999
+        and isinstance(stop, str)
+        and stop.isdigit()
+        and 0 < int(stop) <= 9999999999999999
+        and int(stop) >= int(start)
+        and len(start) == 16
+        and len(stop) == 16
     ):
-        int_number_begin = int(number_begin)
-        int_number_end = int(number_end)
+        int_number_begin = int(start)
+        int_number_end = int(stop)
         for i in range(int_number_begin, int_number_end + 1):
             number_mask = f"{i:0{16}}"
             number_card = " ".join([number_mask[i - 4: i] for i in range(4, 20, 4)])
