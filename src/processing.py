@@ -15,12 +15,11 @@ def filter_by_state(list_operation: list[dict], state: str = "EXECUTED") -> list
 
 
 def sort_by_date(list_operation: list[dict], decreasing: bool = True) -> list:
-    """Функция, возвращает отсортированный по дате список операций"""
     """
-       Функция принимает список словарей и опционально значение для ключа decreasing (по умолчанию 'True')
-       Возвращает новый отсортированный список словарей, в соотвествии с заданным
-       ключом decreasing.
-       """
+    Функция принимает список словарей и опционально значение для ключа decreasing (по умолчанию 'True')
+    Возвращает новый отсортированный список словарей, в соотвествии с заданным
+    ключом decreasing.
+    """
 
     sorted_list_operation: list = sorted(
         list_operation, key=lambda x: x["date"], reverse=decreasing
