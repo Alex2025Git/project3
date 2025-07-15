@@ -1,0 +1,11 @@
+
+16-07-2025 00:03:29 func_inner ok
+16-07-2025 00:03:46 func_inner ok
+16-07-2025 00:04:18 func_inner ok
+16-07-2025 00:04:30 sum_numbers error: TypeError. Inputs: (1, 'send'), {}
+16-07-2025 00:04:42 sum_numbers error: TypeError. Inputs: (1, 'send'), {}
+16-07-2025 00:04:52 sum_numbers error: TypeError. Inputs: (1, 'send'), {}
+16-07-2025 00:04:52 sum_numbers error: TypeError. Inputs: (1, 'send'), {}
+16-07-2025 00:05:46 func_inner ok
+16-07-2025 00:06:21 func_inner ok
+16-07-2025 00:06:34 func_inner ok

@@ -147,3 +147,8 @@ def list_description():
         "Перевод организации",
         "Нет данных",
     ]
+
+
+@pytest.fixture
+def successful_completion():
+    return ["sum_numbers ok\n", 5, 10]
