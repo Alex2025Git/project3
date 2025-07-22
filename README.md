@@ -28,12 +28,15 @@
       - filter_by_currency       - Функция, возвращает банковские операции по указанной валюте
       - transaction_descriptions - Функция, возвращает описание банковских операций
       - card_number_generator    - Функция, возвращает маску для номера карты из указанного диапазона
+    - test_decorators.py
+      -log                       - Функция, логирования выполнения декоратора
 - tests - содержит тесты к модулям
     - confest.py              
     - test_masks.py            
     - test_processing.py
     - test_widget.py
     - test_generators.py
+    - test_decorators.py
 - htmlcov - отчет по покрытию кода тестами в html
 
 
