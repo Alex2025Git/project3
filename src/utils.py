@@ -21,24 +21,12 @@ def read_json_files(path):
 def transaction_amount(transaction):
     operation_amount = transaction.get("operationAmount")
 
-    if operation_amount is None:
-        return 'Некорректная транзацкия отсутствует "operationAmount"'
-    else:
-
-        amount = operation_amount.get("amount")
-        if amount is None:
-            return 'Некорректная транзацкия отсутствует "amount"'
-
-        currency = operation_amount.get("currency")
-        if currency is None:
-            return 'Некорректная транзацкия отсутствует "currency"'
-        else:
-            code = currency.get("code")
-            if code is None:
-                return 'Некорректная транзацкия отсутствует "code"'
+    amount = operation_amount.get("amount")
+    code = operation_amount.get("currency").get("code")
 
     if code == "RUB":
         return float(amount)
-    else:
-        result = external_transaction_amount(amount, code)
+
+    result = external_transaction_amount(amount, code)
+
     return result

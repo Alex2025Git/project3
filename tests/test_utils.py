@@ -17,8 +17,18 @@ def test_external_transaction_amount(mock_get):
 
 def test_transaction_amount(example_list_number_card):
     assert (
-        transaction_amount({"test": "1"})
-        == 'Некорректная транзацкия отсутствует "operationAmount"'
+        transaction_amount(
+            {
+                "id": 441945886,
+                "state": "EXECUTED",
+                "date": "2019-08-26T10:50:58.294041",
+                "operationAmount": {
+                    "amount": "31957.58",
+                    "currency": {"name": "руб.", "code": "RUB"},
+                },
+            }
+        )
+        == 31957.58
     )
     assert transaction_amount(example_list_number_card[4]) == 67314.70
 
