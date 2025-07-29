@@ -25,9 +25,7 @@ def transaction_descriptions(transactions: list[dict]) -> Generator[dict, Any, N
             yield description
 
 
-def card_number_generator(
-    start: str, stop: str
-) -> Generator[str, Any, None]:
+def card_number_generator(start: str, stop: str) -> Generator[str, Any, None]:
     """
     Функция - генератор, которая принимает на вход диапозон от '0000000000000000' до '9999999999999999'
     Возвращает номер карты соотвествующий маске: XXXX XXXX XXXX XXXX
@@ -47,7 +45,7 @@ def card_number_generator(
         int_number_end = int(stop)
         for i in range(int_number_begin, int_number_end + 1):
             number_mask = f"{i:0{16}}"
-            number_card = " ".join([number_mask[i - 4: i] for i in range(4, 20, 4)])
+            number_card = " ".join([number_mask[i - 4 : i] for i in range(4, 20, 4)])
             yield number_card
     else:
         yield "Указаны некорректные данные"
