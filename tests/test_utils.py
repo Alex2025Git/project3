@@ -35,7 +35,7 @@ def test_transaction_amount(example_list_number_card):
     try:
         assert transaction_amount(example_list_number_card[0]) == 67314.70
     except AssertionError:
-       pass
+        pass
 
 
 def test_read_json_files():

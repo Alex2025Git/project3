@@ -1,23 +1,19 @@
 import json
-import os
 import logging
+import os
+
 from src.external_api import external_transaction_amount
 
-'''
-1 - DEBUG — сообщения для отладки приложения.
-2 - INFO — информационные сообщения.
-3 - WARNING — предупреждения.
-4 - ERROR — сообщения об ошибках.
-5 - CRITICAL — критические сообщения.
-'''
 # Создаем логгер
 logger = logging.getLogger(__name__)
 # Задаем уровень
 logger.setLevel(logging.DEBUG)
 # Создаем хендлер для вывода в файл
-file_handler = logging.FileHandler("../logs/utils.log", 'w', 'utf-8')
+file_handler = logging.FileHandler("../logs/utils.log", "w", "utf-8")
 # Создаем формататер
-file_formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s: %(message)s')
+file_formatter = logging.Formatter(
+    "%(asctime)s - %(name)s - %(levelname)s: %(message)s"
+)
 # Устанавлеваем форматер
 file_handler.setFormatter(file_formatter)
 # Устанавлеваем форматердобавляем хендлер
@@ -35,9 +31,9 @@ def read_json_files(path):
                 logger.info(f'Файл  "{path}", найден и открыт для чтения')
                 list_data = json.load(file)
                 if isinstance(list_data, list):
-                    logger.info(f'Данные успешно считаны')
+                    logger.info("Данные успешно считаны")
                     return list_data
-                logger.error(f'Тип данных не сответсвует: "list"')
+                logger.error('Тип данных не сответсвует: "list"')
                 return []
     except FileNotFoundError:
         logger.error(f'Файл не найден: "{path}"')
@@ -59,11 +55,13 @@ def transaction_amount(transaction):
             logger.info(f'Возвращаем количество в RUB:"{float(amount)}"')
             return float(amount)
 
-        logger.info(f'Обращение к сервису API конвертация "{float(amount)} {code}" в RUB')
+        logger.info(
+            f'Обращение к сервису API конвертация "{float(amount)} {code}" в RUB'
+        )
         result = external_transaction_amount(amount, code)
-        logger.info(f'Получен результат от API  {result}')
+        logger.info(f"Получен результат от API  {result}")
         return result
 
-    except (AttributeError,UnboundLocalError) as err:
+    except (AttributeError, UnboundLocalError) as err:
         logger.error(f'Ошибка: "{err}" в работе функции "transaction_amount"')
-        return f'Ошибка {err}'
+        return f"Ошибка {err}"

@@ -1,13 +1,15 @@
-import  logging
+import logging
 
 # Создаем логгер
 logger = logging.getLogger(__name__)
 # Задаем уровень
 logger.setLevel(logging.DEBUG)
 # Создаем хендлер для вывода в файл
-file_handler = logging.FileHandler("../logs/masks.log", 'w', 'utf-8')
+file_handler = logging.FileHandler("../logs/masks.log", "w", "utf-8")
 # Создаем формататер
-file_formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s: %(message)s')
+file_formatter = logging.Formatter(
+    "%(asctime)s - %(name)s - %(levelname)s: %(message)s"
+)
 # Устанавлеваем форматер
 file_handler.setFormatter(file_formatter)
 # Устанавлеваем форматердобавляем хендлер
@@ -33,7 +35,9 @@ def get_mask_card_number(number_card: str) -> str:
         return new_number_card
 
     else:
-        logger.error(f'Указан некорректный номер карты: "{number_card}", преобразование не возможно')
+        logger.error(
+            f'Указан некорректный номер карты: "{number_card}", преобразование не возможно'
+        )
         return "Указан некорректный номер карты, повторите попытку"
 
 
@@ -54,5 +58,7 @@ def get_mask_account(number_account: str) -> str:
         return "**" + number_account[-4:]
 
     else:
-        logger.error(f'Указан некорректный номер счета: "{number_account}", преобразование не возможно')
+        logger.error(
+            f'Указан некорректный номер счета: "{number_account}", преобразование не возможно'
+        )
         return "Указан некорректный номер счета, повторите попытку"
