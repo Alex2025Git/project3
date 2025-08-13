@@ -28,11 +28,12 @@
         - filter_by_currency       - Функция, возвращает банковские операции по указанной валюте
         - transaction_descriptions - Функция, возвращает описание банковских операций
         - card_number_generator    - Функция, возвращает маску для номера карты из указанного диапазона
-    - test_decorators.py
-        - log                      - Функция, логирования выполнения декоратора
     - utils.py (Используется логирование в файл utils.log)
         - transaction_amount       - Функция, конвертации валюты в RUB
         - read_json_files          - Функция, чтения данных из файла json
+    - reading_files.py
+        - reading_transactions_csv   - Функция для работы с CSV - файлами
+        - reading_transactions_excel - Функция для работы с Excel - файлами
 - tests - содержит тесты к модулям
     - confest.py              
     - test_masks.py            
@@ -41,6 +42,8 @@
     - test_generators.py
     - test_decorators.py
     - test_utils.py
+    - test_decorators.py
+    - test_reading_files.py
 - htmlcov - отчет по покрытию кода тестами в html
 
 
