@@ -5,7 +5,10 @@ from dotenv import load_dotenv
 
 
 def external_transaction_amount(amount, code):
-
+    """
+    Функция принимает в качестве аргументов валюту и ее сумму,
+    Возвращает количестово в рублях
+    """
     # Загрузка переменных из .env-файла
     load_dotenv()
     # Получение значения переменной API_KEY из .env-файла
