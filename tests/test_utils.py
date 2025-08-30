@@ -40,4 +40,4 @@ def test_transaction_amount(example_list_number_card):
 
 def test_read_json_files():
     assert read_json_files("") == []
-    assert type(read_json_files("../date/operations.json")) == list
+    assert type(read_json_files("C:/Users/HomePC/project3/date/operations.json")) == list

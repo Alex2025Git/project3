@@ -40,7 +40,10 @@ def get_date(srt_date: str) -> str:
     """
     try:
         # преобразуем строку в дату
-        format_date = datetime.strptime(srt_date, "%Y-%m-%dT%H:%M:%S.%f")
+        if "Z" not in srt_date:
+            format_date = datetime.strptime(srt_date, "%Y-%m-%dT%H:%M:%S.%f")
+        else:
+            format_date = datetime.strptime(srt_date, "%Y-%m-%dT%H:%M:%S%z")
     except ValueError:
         return "Указан некорректный формат даты, повторите попытку"
     except TypeError:
